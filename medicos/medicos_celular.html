@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <title>Médicos — Celular</title>
+    <style>
+      :root {
+        --pink: #ff2d74;
+        --pink2: #ff0f5b;
+        --card-bg: rgba(255, 255, 255, 0.88); /* blanco semitransparente */
+        --text: #111827;
+        --muted: #6b7280;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font: 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      }
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        /* FONDO: usa tu imagen o deja el gradiente */
+        background: var(
+          --hero,
+          radial-gradient(
+            1200px 600px at 20% 0%,
+            #ffebf2 0%,
+            #f9e8ef 40%,
+            #f2f3f7 100%
+          )
+        );
+        background-size: cover;
+        background-position: center;
+      }
+      .sf-wtl {
+        width: min(100%, 980px);
+      }
+
+      .form-card {
+        background: var(--card-bg);
+        backdrop-filter: saturate(160%) blur(8px);
+        -webkit-backdrop-filter: saturate(160%) blur(8px);
+        border-radius: 22px;
+        padding: clamp(18px, 3.6vw, 28px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        color: var(--text);
+      }
+
+      .title {
+        font-size: clamp(28px, 5.2vw, 44px);
+        line-height: 1.1;
+        margin: 0 0 10px;
+        font-weight: 800;
+        letter-spacing: -0.3px;
+        text-align: center;
+      }
+      .badge {
+        display: inline-block;
+        background: #fff;
+        color: #111;
+        padding: 10px 16px;
+        border-radius: 999px;
+        font-weight: 600;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        margin: 4px auto 8px;
+        text-align: center;
+      }
+      .lead {
+        text-align: center;
+        font-weight: 700;
+        margin: 6px 0 18px;
+      }
+
+      /* Fila solo con input + botón, centrados verticalmente */
+      .controls-row {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: 1fr; /* móvil: una columna */
+        align-items: center; /* centra verticalmente */
+      }
+      @media (min-width: 720px) {
+        .controls-row {
+          grid-template-columns: 1fr 260px; /* desktop: input | botón */
+        }
+      }
+
+      label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .req {
+        color: #ef4444;
+      }
+
+      .phone-wrap {
+        position: relative;
+      }
+      .phone-wrap .prefix {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: var(--muted);
+        background: #edf0f5;
+        padding: 6px 10px;
+        border-radius: 999px;
+        pointer-events: none;
+        box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.04);
+      }
+      .phone-wrap input {
+        display: block;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: #edf0f5;
+        color: #111;
+        padding: 14px 16px 14px 100px; /* espacio para 'MX +52' */
+        border-radius: 999px;
+        font-size: 18px;
+        box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.06);
+      }
+      .phone-wrap input:focus {
+        box-shadow: 0 0 0 3px rgba(255, 30, 102, 0.25);
+      }
+
+      .btn-submit {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 14px 26px;
+        border-radius: 999px;
+        border: 0;
+        cursor: pointer;
+        font-weight: 800;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        background: linear-gradient(180deg, var(--pink), var(--pink2));
+        box-shadow: 0 12px 22px rgba(255, 47, 112, 0.35);
+        transition: transform 0.06s ease, filter 0.2s ease, box-shadow 0.2s ease;
+      }
+      @media (min-width: 720px) {
+        .btn-submit {
+          width: auto;
+          min-width: 240px;
+          height: 52px;
+        }
+        .phone-wrap input {
+          height: 52px;
+        }
+      }
+      .btn-submit:hover {
+        filter: brightness(1.05);
+      }
+      .btn-submit:active {
+        transform: translateY(1px);
+      }
+
+      /* Reemplaza tu bloque .consent por este */
+      .consent {
+        margin: 16px auto 0; /* margen arriba y centrado horizontal */
+        width: 100%; /* ocupa el ancho del form */
+        display: flex;
+        justify-content: center; /* centra el checkbox + texto */
+        align-items: center; /* alinea verticalmente */
+        gap: 8px;
+        font-size: 14px;
+        color: #111;
+        text-align: center; /* centra el texto cuando hace wrap */
+      }
+
+      .consent input {
+        width: 18px;
+        height: 18px;
+        margin: 0; /* quita el empuje hacia abajo */
+      }
+
+      .consent a {
+        color: #1d4ed8;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Pon aquí tu imagen si quieres (GitHub Pages, CDN, etc.) -->
+    <!-- Ejemplo: style="--hero: url('https://tu-dominio/img/medicos-bg.jpg')" -->
+    <div class="hero" style="">
+      <div class="sf-wtl">
+        <form
+          class="form-card"
+          action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DHr00000FbZln"
+          method="POST"
+        >
+          <!-- Título + subtítulos -->
+          <h1 class="title">¿Quieres más<br />información?</h1>
+          <div style="text-align: center">
+            <span class="badge">Te llamaremos lo antes posible</span>
+          </div>
+          <p class="lead">Escribe tu teléfono a 10 dígitos</p>
+
+          <!-- Requeridos por SF -->
+          <input type="hidden" name="oid" value="00DHr00000FbZln" />
+          <input
+            type="hidden"
+            name="retURL"
+            value="https://inconnect.mx/gracias-medicos-1/"
+          />
+
+          <!-- Ocultos (no obligatorios) -->
+          <input
+            type="hidden"
+            id="00NHr00001cZCHa"
+            name="00NHr00001cZCHa"
+            value="Formulario Landing"
+          />
+          <input
+            type="hidden"
+            id="00NHr00001cZCGI"
+            name="00NHr00001cZCGI"
+            value="Página Médicos"
+          />
+          <input
+            type="hidden"
+            id="00NHr00001cZC5o"
+            name="00NHr00001cZC5o"
+            value="Nuevo"
+          />
+          <input
+            type="hidden"
+            id="00NHr00001SBgoa"
+            name="00NHr00001SBgoa"
+            value="En la cola"
+          />
+
+          <!-- Fila: Teléfono + Botón -->
+          <!-- Teléfono + botón (label fuera de la fila) -->
+          <div class="field">
+            <label for="mobile">Teléfono <span class="req">*</span></label>
+
+            <div class="controls-row">
+              <div class="phone-wrap">
+                <span class="prefix">MX +52</span>
+                <input
+                  id="mobile"
+                  name="mobile"
+                  type="tel"
+                  minlength="10"
+                  maxlength="10"
+                  pattern="[0-9]{10}"
+                  inputmode="numeric"
+                  placeholder="10 dígitos"
+                  title="Ingresa exactamente 10 dígitos"
+                  required
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)"
+                />
+              </div>
+
+              <button type="submit" class="btn-submit" formtarget="_blank">
+                LLÁMAME AHORA
+              </button>
+            </div>
+          </div>
+
+          <!-- Consentimiento -->
+          <label class="consent">
+            <input type="checkbox" name="intereses" value="Acepto" required />
+            <span
+              >He leído y acepto las <strong>Políticas de Privacidad</strong>
+              <a
+                href="https://getnet.inconnect.mx/aviso-de-privacidad/"
+                target="_blank"
+                rel="noopener"
+              >
+                (Leer políticas)</a
+              >
+            </span>
+          </label>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
