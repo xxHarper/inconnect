@@ -1,0 +1,175 @@
+/* Fuente global (centralizada) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+/* Reset suave */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font: 16px/1.45 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Asegura que controles de formulario usen la misma fuente */
+input,
+button,
+select,
+textarea,
+label {
+    font-family: inherit;
+}
+
+/* ===== Fix principal: nada se sale del ancho ===== */
+.sf-wtl,
+.sf-wtl *,
+.sf-wtl *::before,
+.sf-wtl *::after {
+    box-sizing: border-box;
+}
+
+.sf-wtl {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
+        sans-serif;
+}
+
+.sf-wtl .form-card {
+    width: min(100%, 640px);
+    margin: 24px auto;
+    background: #1f2026;
+    color: #fff;
+    padding: clamp(16px, 3.2vw, 28px);
+    border-radius: clamp(14px, 3vw, 18px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    /* recorta cualquier pixel rebelde */
+}
+
+.sf-wtl .field {
+    margin-bottom: 18px;
+}
+
+.sf-wtl label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.sf-wtl .req {
+    color: #ff1e66;
+}
+
+.sf-wtl input[type="text"],
+.sf-wtl input[type="email"],
+.sf-wtl input[type="tel"],
+.sf-wtl select {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    outline: none;
+    background: #eceff3;
+    color: #111;
+    padding: clamp(11px, 2.4vw, 12px) clamp(14px, 3vw, 16px);
+    border-radius: 999px;
+    font-size: clamp(15px, 2.6vw, 16px);
+    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+.sf-wtl select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #888 50%),
+        linear-gradient(135deg, #888 50%, transparent 50%);
+    background-position: calc(100% - 18px) calc(1em + 6px),
+        calc(100% - 13px) calc(1em + 6px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 40px;
+}
+
+.sf-wtl input:focus,
+.sf-wtl select:focus {
+    box-shadow: 0 0 0 3px rgba(255, 30, 102, 0.3);
+}
+
+/* Teléfono */
+.sf-wtl .phone-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.sf-wtl .phone-wrap .prefix {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(12px, 2.6vw, 14px);
+    color: #444;
+    background: #eceff3;
+    padding: 2px 8px 2px 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    line-height: 1;
+    pointer-events: none;
+    border-radius: 999px 0 0 999px;
+    /* mejor integración visual */
+}
+
+.sf-wtl .phone-wrap input {
+    padding-left: clamp(74px, 18vw, 100px);
+    /* espacio para el prefijo */
+}
+
+/* Botón */
+.sf-wtl .btn-submit {
+    display: block;
+    width: clamp(160px, 40%, 220px);
+    margin: 12px auto 0;
+    border: none;
+    cursor: pointer;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(180deg, #ff2d74, #ff0f5b);
+    box-shadow: 0 8px 16px rgba(255, 47, 112, 0.35);
+    transition: transform 0.06s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.sf-wtl .btn-submit:hover {
+    filter: brightness(1.05);
+}
+
+.sf-wtl .btn-submit:active {
+    transform: translateY(1px);
+    box-shadow: 0 6px 12px rgba(255, 47, 112, 0.28);
+}
+
+/* Breakpoints */
+@media (max-width: 480px) {
+    .sf-wtl .form-card {
+        margin: 16px;
+    }
+
+    .sf-wtl .btn-submit {
+        width: 100%;
+    }
+
+    .sf-wtl .phone-wrap input {
+        padding-left: 74px;
+    }
+}
+
+@media (min-width: 900px) {
+    .sf-wtl .form-card {
+        width: min(100%, 680px);
+    }
+}
