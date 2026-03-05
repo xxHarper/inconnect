@@ -71,7 +71,7 @@
           <span class="prefix">MX +52</span>
           <input id="mobile" name="mobile" type="tel" minlength="10" maxlength="10" pattern="[0-9]{10}"
             inputmode="numeric" placeholder="10 dígitos" title="Ingresa exactamente 10 dígitos" required
-            oninput="this.value='52'+this.value.replace(/[^0-9]/g,'').slice(0,10)" />
+            oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)" />
         </div>
       </div>
 
