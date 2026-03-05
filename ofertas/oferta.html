@@ -35,8 +35,25 @@
       <input id="00NHr00001cZCGN" maxlength="244" name="00NHr00001cZCGN" size="20" type="hidden" />
 
       <!-- Fuente de leads -->
-      <input id="00NHr00001cZCHa" name="00NHr00001cZCHa" type="hidden"  value="Google" />
+      <input id="00NHr00001cZCHa" name="00NHr00001cZCHa" title="Fuente de Leads" value="Google" />
 
+      <!-- Ad Name -->
+      <input  id="00NHr00001SBgoH" maxlength="200" name="00NHr00001SBgoH" size="20" type="hidden" />
+
+      <!-- Campaign ID -->
+      <input  id="00NHr00001cZCGw" maxlength="200" name="00NHr00001cZCGw" size="20" type="hidden" />
+
+      <!-- Form id -->
+      <input  id="00NHr00001cZCGS" maxlength="244" name="00NHr00001cZCGS" size="20" type="hidden" />
+
+      <!-- Ad ID -->
+      <input  id="00NHr00001SBgoG" maxlength="200" name="00NHr00001SBgoG" size="20" type="hidden" />
+
+      <!-- Form name -->
+      <input  id="00NHr00001cZCGN" maxlength="244" name="00NHr00001cZCGN" size="20" type="hidden" />
+
+      <!-- Plataforma -->
+      <input  id="00NHr00001cZCHV" maxlength="200" name="00NHr00001cZCHV" size="20" type="hidden" />
 
       <div class="field">
         <label for="first_name">Nombre <span class="req">*</span></label>
@@ -111,16 +128,53 @@
     </form>
   </div>
 
+inconnect.mx/oferta/?utm_source=google&utm_medium=pmax&utm_campaign=PMAX&utm_id=21348586258&utm_term=%7Bkeyword%7D&utm_content=%7Badgroupid%7D
+
   <script>
     (function () {
       const p = new URLSearchParams(window.location.search);
-
+      
       // Campaign -> tu campo custom de Campaign (00NHr00001cZCGX)
-      const campaign = p.get("Campaign");
-      if (campaign) {
-        const elCamp = document.getElementById("00NHr00001cZCGX");
-        if (elCamp) elCamp.value = campaign;
+      const utm_source = p.get("utm_source");
+      const utm_medium = p.get("utm_medium");
+      const utm_campaign = p.get("utm_campaign");
+      const utm_id = p.get("utm_id");
+      const utm_term = p.get("utm_term");
+      const utm_content = p.get("utm_content");
+
+
+      if (utm_source) {
+        const elCamp = document.getElementById("00NHr00001cZCHV");
+        if (elCamp) elCamp.value = utm_source;
       }
+
+      if(utm_medium){
+        const elCamp = document.getElementById("00NHr00001SBgoH");
+        if(elCamp) elCamp.value = utm_medium;
+      }
+
+      if(utm_campaign){
+        const elCamp = document.getElementById("00NHr00001cZCGX");
+        if(elCamp) elCamp.value = utm_campaign
+      }
+
+      if(utm_id){
+        const elCamp = document.getElementById("00NHr00001cZCGw");
+      }
+
+      if(utm_term){
+        const elCamp = document.getElementById("00NHr00001cZCGS");
+        if(elCamp) elCamp.value = utm_term;
+      }
+
+      if(utm_content){
+        const elCamp = document.getElementById("00NHr00001SBgoG");
+        if(elCamp) elCamp.value = utm_content;
+      }
+
+      const formUrl = document.getElementById("00NHr00001cZCGN");
+      formUrl.value = p;
+
     })();
   </script>
 
