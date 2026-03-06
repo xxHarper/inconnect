@@ -38,22 +38,22 @@
       <input id="00NHr00001cZCHa" name="00NHr00001cZCHa" title="Fuente de Leads" type="hidden" value="Google" />
 
       <!-- Ad Name -->
-      <input  id="00NHr00001SBgoH" maxlength="200" name="00NHr00001SBgoH" size="20" type="hidden" />
+      <input id="00NHr00001SBgoH" maxlength="200" name="00NHr00001SBgoH" size="20" type="hidden" />
 
       <!-- Campaign ID -->
-      <input  id="00NHr00001cZCGw" maxlength="200" name="00NHr00001cZCGw" size="20" type="hidden" />
+      <input id="00NHr00001cZCGw" maxlength="200" name="00NHr00001cZCGw" size="20" type="hidden" />
 
       <!-- Form id -->
-      <input  id="00NHr00001cZCGS" maxlength="244" name="00NHr00001cZCGS" size="20" type="hidden" />
+      <input id="00NHr00001cZCGS" maxlength="244" name="00NHr00001cZCGS" size="20" type="hidden" />
 
       <!-- Ad ID -->
-      <input  id="00NHr00001SBgoG" maxlength="200" name="00NHr00001SBgoG" size="20" type="hidden" />
+      <input id="00NHr00001SBgoG" maxlength="200" name="00NHr00001SBgoG" size="20" type="hidden" />
 
       <!-- Form name -->
-      <input  id="00NHr00001cZCGN" maxlength="244" name="00NHr00001cZCGN" size="20" type="hidden" />
+      <input id="00NHr00001cZCGN" maxlength="244" name="00NHr00001cZCGN" size="20" type="hidden" />
 
       <!-- Plataforma -->
-      <input  id="00NHr00001cZCHV" maxlength="200" name="00NHr00001cZCHV" size="20" type="hidden" />
+      <input id="00NHr00001cZCHV" maxlength="200" name="00NHr00001cZCHV" size="20" type="hidden" />
 
       <div class="field">
         <label for="first_name">Nombre <span class="req">*</span></label>
@@ -129,22 +129,22 @@
   </div>
 
   <script>
-(function () {
-  const p = new URLSearchParams(window.location.search);
+    (function () {
+      const p = new URLSearchParams(window.location.search);
 
-  const setVal = (id, val) => {
-    const el = document.getElementById(id);
-    if (el && val) el.value = val;
-  };
+      const setVal = (id, val) => {
+        const el = document.getElementById(id);
+        if (el && val) el.value = val;
+      };
 
-  setVal("00NHr00001cZCHV", p.get("utm_source"));
-  setVal("00NHr00001SBgoH", p.get("utm_medium"));
-  setVal("00NHr00001cZCGX", p.get("utm_campaign"));
-  setVal("00NHr00001cZCGw", p.get("utm_id"));
-  setVal("00NHr00001cZCGS", p.get("utm_term"));
-  setVal("00NHr00001SBgoG", p.get("utm_content"));
-})();
-</script>
+      setVal("00NHr00001cZCHV", p.get("utm_source"));
+      setVal("00NHr00001SBgoH", p.get("utm_medium"));
+      setVal("00NHr00001cZCGX", p.get("utm_campaign"));
+      setVal("00NHr00001cZCGw", p.get("utm_id"));
+      setVal("00NHr00001cZCGS", p.get("utm_term"));
+      setVal("00NHr00001SBgoG", p.get("utm_content"));
+    })();
+  </script>
 
 </body>
 
