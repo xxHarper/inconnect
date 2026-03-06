@@ -129,29 +129,24 @@
   </div>
 
   <script>
-    (function () {
-      const p = new URLSearchParams(window.location.search);
+(function () {
+  const p = new URLSearchParams(window.location.search);
 
-      const map = {
-        "00NHr00001cZCHV": "utm_source",
-        "00NHr00001SBgoH": "utm_medium",
-        "00NHr00001cZCGX": "utm_campaign",
-        "00NHr00001cZCGw": "utm_id",
-        "00NHr00001cZCGS": "utm_term",
-        "00NHr00001SBgoG": "utm_content"
-      };
+  const setIfExists = (id, val) => {
+    const el = document.getElementById(id);
+    if (el && val !== null && val !== undefined && String(val).trim() !== "") {
+      el.value = String(val);
+    }
+  };
 
-      Object.entries(map).forEach(([id, param]) => {
-        const el = document.getElementById(id);
-        const val = p.get(param);
-        if (el && val) el.value = val;
-      });
-
-      const formUrl = document.getElementById("00NHr00001cZCGN");
-      if (formUrl) formUrl.value = window.location.href;
-    })();
-  </script>
-
+  setIfExists("00NHr00001cZCHV", p.get("utm_source"));
+  setIfExists("00NHr00001SBgoH", p.get("utm_medium"));
+  setIfExists("00NHr00001cZCGX", p.get("utm_campaign"));
+  setIfExists("00NHr00001cZCGw", p.get("utm_id"));
+  setIfExists("00NHr00001cZCGS", p.get("utm_term"));
+  setIfExists("00NHr00001SBgoG", p.get("utm_content"));
+})();
+</script>
 </body>
 
 </html>
