@@ -1,11 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="../css/style.css?v=1" />
-    <title>Médicos</title>
+    <title>Buen fin</title>
   </head>
   <body>
     <div class="sf-wtl">
@@ -18,24 +17,7 @@
         <input
           type="hidden"
           name="retURL"
-          value="https://inconnect.mx/gracias-medicos-1/"
-        />
-
-        <!-- Ocultos (no obligatorios) -->
-        <!-- Fuente de leads -->
-        <input
-          type="hidden"
-          id="00NHr00001cZCHa"
-          name="00NHr00001cZCHa"
-          value="Formulario Landing"
-        />
-
-        <!-- Page Name -->
-        <input
-          type="hidden"
-          id="00NHr00001cZCGI"
-          name="00NHr00001cZCGI"
-          value="Página Medicos"
+          value="https://inconnect.mx/gracias"
         />
 
         <!-- Tipo -->
@@ -52,6 +34,87 @@
           id="00NHr00001SBgoa"
           name="00NHr00001SBgoa"
           value="En la cola"
+        />
+
+        <!-- Fuente de leads -->
+        <input
+          id="00NHr00001cZCHa"
+          name="00NHr00001cZCHa"
+          title="Fuente de Leads"
+          type="hidden"
+          value="Google"
+        />
+
+        <!-- Campaign -->
+        <input
+          id="00NHr00001cZCGX"
+          maxlength="244"
+          name="00NHr00001cZCGX"
+          size="20"
+          type="hidden"
+        />
+
+        <!-- Page Name -->
+        <input
+          id="00NHr00001cZCGI"
+          maxlength="244"
+          name="00NHr00001cZCGI"
+          size="20"
+          type="hidden"
+        />
+
+        <!-- Form Name -->
+        <input
+          id="00NHr00001cZCGN"
+          maxlength="244"
+          name="00NHr00001cZCGN"
+          size="20"
+          type="hidden"
+        />
+
+        <!-- Ad Name -->
+        <input
+          id="00NHr00001SBgoH"
+          maxlength="200"
+          name="00NHr00001SBgoH"
+          size="20"
+          type="hidden"
+        />
+
+        <!-- Campaign ID -->
+        <input
+          id="00NHr00001cZCGw"
+          maxlength="200"
+          name="00NHr00001cZCGw"
+          size="20"
+          type="hidden"
+        />
+
+        <!-- Form id -->
+        <input
+          id="00NHr00001cZCGS"
+          maxlength="244"
+          name="00NHr00001cZCGS"
+          size="20"
+          type="hidden"
+        />
+
+        <!-- Ad ID -->
+        <input
+          id="00NHr00001SBgoG"
+          maxlength="200"
+          name="00NHr00001SBgoG"
+          size="20"
+          type="hidden"
+        />
+
+        <!-- Plataforma -->
+        <input
+          id="00NHr00001cZCHV"
+          maxlength="200"
+          name="00NHr00001cZCHV"
+          size="20"
+          type="hidden"
         />
 
         <div class="field">
@@ -161,10 +224,61 @@
           </select>
         </div>
 
-        <button type="submit" class="btn-submit" formtarget="_blank">
-          Enviar
-        </button>
+        <button type="submit" class="btn-submit">Enviar</button>
       </form>
     </div>
+
+    <script>
+      (function () {
+        const p = new URLSearchParams(window.location.search);
+
+        const fromURL = {
+          utm_source: p.get("utm_source"),
+          utm_medium: p.get("utm_medium"),
+          utm_campaign: p.get("utm_campaign"),
+          utm_id: p.get("utm_id"),
+          utm_term: p.get("utm_term"),
+          utm_content: p.get("utm_content"),
+        };
+
+        const hasUtms = Object.values(fromURL).some(Boolean);
+        if (hasUtms) {
+          sessionStorage.setItem("utms", JSON.stringify(fromURL));
+        }
+
+        let utms = fromURL;
+        const saved = sessionStorage.getItem("utms");
+        if (!hasUtms && saved) {
+          utms = JSON.parse(saved);
+        }
+
+        const anyValue = Object.values(utms).some(Boolean);
+        if (!anyValue) {
+          utms = {
+            utm_source: "organico",
+            utm_medium: "organico",
+            utm_campaign: "organico",
+            utm_id: "organico",
+            utm_term: "organico",
+            utm_content: "organico",
+          };
+        }
+
+        const setVal = (id, val) => {
+          const el = document.getElementById(id);
+          if (el && val) el.value = val;
+        };
+
+        // UTMs
+        setVal("00NHr00001cZCHV", utms.utm_source);
+        setVal("00NHr00001SBgoH", utms.utm_medium);
+        setVal("00NHr00001cZCGX", utms.utm_campaign);
+        setVal("00NHr00001cZCGw", utms.utm_id);
+        setVal("00NHr00001cZCGS", utms.utm_term);
+        setVal("00NHr00001SBgoG", utms.utm_content);
+
+        setVal("00NHr00001cZCGN", window.location.origin);
+      })();
+    </script>
   </body>
 </html>

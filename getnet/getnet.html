@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -93,7 +93,9 @@
               placeholder="10 dígitos"
               title="Ingresa exactamente 10 dígitos"
               required
-              oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)"
+              oninput="
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)
+              "
             />
           </div>
         </div>

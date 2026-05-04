@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="../css/style.css?v=1" />
-    <title>Médicos</title>
+    <title>Home</title>
   </head>
   <body>
     <div class="sf-wtl">
@@ -18,40 +17,7 @@
         <input
           type="hidden"
           name="retURL"
-          value="https://inconnect.mx/gracias-medicos-1/"
-        />
-
-        <!-- Ocultos (no obligatorios) -->
-        <!-- Fuente de leads -->
-        <input
-          type="hidden"
-          id="00NHr00001cZCHa"
-          name="00NHr00001cZCHa"
-          value="Formulario Landing"
-        />
-
-        <!-- Page Name -->
-        <input
-          type="hidden"
-          id="00NHr00001cZCGI"
-          name="00NHr00001cZCGI"
-          value="Página Medicos"
-        />
-
-        <!-- Tipo -->
-        <input
-          type="hidden"
-          id="00NHr00001cZC5o"
-          name="00NHr00001cZC5o"
-          value="Nuevo"
-        />
-
-        <!-- Fase -->
-        <input
-          type="hidden"
-          id="00NHr00001SBgoa"
-          name="00NHr00001SBgoa"
-          value="En la cola"
+          value="https://inconnect.mx/gracias"
         />
 
         <div class="field">
@@ -161,10 +127,161 @@
           </select>
         </div>
 
+        <!-- Fase fijo -->
+        <input
+          type="hidden"
+          id="00NHr00001SBgoa"
+          name="00NHr00001SBgoa"
+          value="En la cola"
+        />
+
+        <!-- Fuente de leads fijo -->
+        <input
+          type="hidden"
+          id="00NHr00001cZCHa"
+          name="00NHr00001cZCHa"
+          value="Google"
+        />
+
+        <!-- Form name fijo -->
+        <input
+          type="hidden"
+          id="00NHr00001cZCGN"
+          name="00NHr00001cZCGN"
+          value="Home"
+        />
+
+        <!-- Page Name = utm_source -->
+        <input
+          type="hidden"
+          id="00NHr00001cZCGI"
+          name="00NHr00001cZCGI"
+          value=""
+        />
+
+        <!-- Campaign = utm_campaign -->
+        <input
+          type="hidden"
+          id="00NHr00001cZCGX"
+          name="00NHr00001cZCGX"
+          value=""
+        />
+
+        <!-- Campaign ID = primer valor de utm_content -->
+        <input
+          type="hidden"
+          id="00NHr00001cZCGw"
+          name="00NHr00001cZCGw"
+          value=""
+        />
+
+        <!-- AdSet ID = segundo valor de utm_content -->
+        <input
+          type="hidden"
+          id="00NHr00001cZCGr"
+          name="00NHr00001cZCGr"
+          value=""
+        />
+
+        <!-- Keyword -->
+        <input
+          type="hidden"
+          id="00NV400000I8Bf3"
+          name="00NV400000I8Bf3"
+          value=""
+        />
+
+        <!-- Device -->
+        <input
+          type="hidden"
+          id="00NV400000I8Brx"
+          name="00NV400000I8Brx"
+          value=""
+        />
+
+        <!-- Matchtype -->
+        <input
+          type="hidden"
+          id="00NV400000I8C01"
+          name="00NV400000I8C01"
+          value=""
+        />
+
+        <!-- Network -->
+        <input
+          type="hidden"
+          id="00NV400000I8C4r"
+          name="00NV400000I8C4r"
+          value=""
+        />
+
         <button type="submit" class="btn-submit" formtarget="_blank">
           Enviar
         </button>
       </form>
     </div>
+    <script>
+      (function () {
+        const p = new URLSearchParams(window.location.search);
+
+        const fromURL = {
+          utm_source: p.get("utm_source"),
+          utm_campaign: p.get("utm_campaign"),
+          utm_content: p.get("utm_content"),
+          utm_term: p.get("utm_term"),
+          device: p.get("device"),
+          matchtype: p.get("matchtype"),
+          network: p.get("network"),
+        };
+
+        const hasTracking = Object.values(fromURL).some(Boolean);
+
+        if (hasTracking) {
+          sessionStorage.setItem("inconnect_tracking", JSON.stringify(fromURL));
+        }
+
+        let tracking = fromURL;
+
+        const saved = sessionStorage.getItem("inconnect_tracking");
+
+        if (!hasTracking && saved) {
+          try {
+            tracking = JSON.parse(saved);
+          } catch (e) {
+            tracking = fromURL;
+          }
+        }
+
+        if (!Object.values(tracking).some(Boolean)) {
+          tracking.utm_source = "Directo/Organico";
+        }
+
+        const contentParts = (tracking.utm_content || "").split("*");
+
+        const campaignId = contentParts[0] || "";
+        const adSetId = contentParts[1] || "";
+
+        const setVal = (id, val) => {
+          const el = document.getElementById(id);
+          if (el) el.value = val || "";
+        };
+
+        // Page Name = utm_source
+        setVal("00NHr00001cZCGI", tracking.utm_source);
+
+        // Campaign = utm_campaign
+        setVal("00NHr00001cZCGX", tracking.utm_campaign);
+
+        // utm_content = campaignid*adgroupid*creative
+        setVal("00NHr00001cZCGw", campaignId);
+        setVal("00NHr00001cZCGr", adSetId);
+
+        // Google Ads extra params
+        setVal("00NV400000I8Bf3", tracking.utm_term);
+        setVal("00NV400000I8Brx", tracking.device);
+        setVal("00NV400000I8C01", tracking.matchtype);
+        setVal("00NV400000I8C4r", tracking.network);
+      })();
+    </script>
   </body>
 </html>
