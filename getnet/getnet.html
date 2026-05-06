@@ -257,10 +257,11 @@
           tracking.utm_source = "Directo/Organico";
         }
 
-        const contentParts = (tracking.utm_content || "").split("*");
+        const rawContent = tracking.utm_content || "";
 
-        const campaignId = contentParts[0] || "";
-        const adSetId = contentParts[1] || "";
+        const campaignId = rawContent.substring(0, 3);
+        const adSetId = rawContent.substring(3, 6);
+        const creativeId = rawContent.substring(6, 9);
 
         const setVal = (id, val) => {
           const el = document.getElementById(id);
