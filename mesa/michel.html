@@ -49,11 +49,7 @@
         />
 
         <!-- Email generado automáticamente -->
-        <input
-          type="hidden"
-          id="email"
-          name="email"
-        />
+        <input type="hidden" id="email" name="email" />
 
         <div class="field">
           <label for="last_name">Apellidos <span class="req">*</span></label>
@@ -105,15 +101,19 @@
         crypto.getRandomValues(randomArray);
 
         const randomPart = Array.from(randomArray)
-          .map(number => number.toString(36))
+          .map((number) => number.toString(36))
           .join("");
 
         return `lead_${timestamp}_${randomPart}@test-inconnect.mx`;
       }
 
       document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".form-card");
         const emailInput = document.getElementById("email");
-        emailInput.value = generarEmailUnico();
+
+        form.addEventListener("submit", function () {
+          emailInput.value = generarEmailUnico();
+        });
       });
     </script>
   </body>
