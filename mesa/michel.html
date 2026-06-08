@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css?v=1" />
     <title>Home</title>
   </head>
+
   <body>
     <div class="sf-wtl">
       <form
@@ -15,13 +16,14 @@
         method="POST"
       >
         <input type="hidden" name="oid" value="00DHr00000FbZln" />
+
         <input
           type="hidden"
           name="retURL"
           value="https://inconnect.mx/gracias-medicos-1/"
         />
 
-        <!-- Ocultos (no obligatorios) -->
+        <!-- Ocultos -->
         <!-- Fuente de leads -->
         <input
           type="hidden"
@@ -46,6 +48,13 @@
           value="En la cola"
         />
 
+        <!-- Email generado automáticamente -->
+        <input
+          type="hidden"
+          id="email"
+          name="email"
+        />
+
         <div class="field">
           <label for="last_name">Apellidos <span class="req">*</span></label>
           <input
@@ -60,8 +69,10 @@
 
         <div class="field">
           <label for="mobile">Teléfono <span class="req">*</span></label>
+
           <div class="phone-wrap">
             <span class="prefix">MX +52</span>
+
             <input
               id="mobile"
               name="mobile"
@@ -80,22 +91,30 @@
           </div>
         </div>
 
-        <div class="field">
-          <label for="email">Email <span class="req">*</span></label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            maxlength="80"
-            required
-            autocomplete="email"
-          />
-        </div>
-
         <button type="submit" class="btn-submit" formtarget="_blank">
           Enviar
         </button>
       </form>
     </div>
+
+    <script>
+      function generarEmailUnico() {
+        const timestamp = Date.now();
+
+        const randomArray = new Uint32Array(2);
+        crypto.getRandomValues(randomArray);
+
+        const randomPart = Array.from(randomArray)
+          .map(number => number.toString(36))
+          .join("");
+
+        return `lead_${timestamp}_${randomPart}@test-inconnect.mx`;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const emailInput = document.getElementById("email");
+        emailInput.value = generarEmailUnico();
+      });
+    </script>
   </body>
 </html>
