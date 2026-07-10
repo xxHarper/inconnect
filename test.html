@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-    <title>Home</title>
+    <title>Oferta</title>
   </head>
   <body>
     <div class="sf-wtl">
@@ -79,12 +79,12 @@
         </div>
 
         <div class="field">
-          <label for="00NHr00001cBZIx"
+          <label for="00NHr00001cZIlW"
             >Giro Comercial <span class="req">*</span></label
           >
           <select
-            id="00NHr00001cBZIx"
-            name="00NHr00001cBZIx"
+            id="00NHr00001cZIlW"
+            name="00NHr00001cZIlW"
             title="Giro"
             required
           >
@@ -116,7 +116,7 @@
             <option value="Restaurantes">Restaurantes</option>
             <option value="Salones de belleza">Salones de belleza</option>
             <option value="Estacionamientos">Estacionamientos</option>
-            <option value="supermercados">supermercados</option>
+            <option value="Supermercados">Supermercados</option>
             <option value="Transporte Aereo">Transporte Aereo</option>
             <option value="Transporte Terrestre de Pasajeros">
               Transporte Terrestre de Pasajeros
@@ -148,7 +148,7 @@
           type="hidden"
           id="00NHr00001cZCGN"
           name="00NHr00001cZCGN"
-          value="Home"
+          value="Oferta"
         />
 
         <!-- Page Name = utm_source -->
@@ -256,7 +256,7 @@
           tracking.utm_source = "Directo/Organico";
         }
 
-        const contentParts = (tracking.utm_content || "").split("*");
+        const contentParts = (tracking.utm_content || "").split("_");
 
         const campaignId = contentParts[0] || "";
         const adSetId = contentParts[1] || "";
